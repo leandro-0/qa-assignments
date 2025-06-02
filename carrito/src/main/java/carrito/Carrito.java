@@ -19,6 +19,7 @@ public class Carrito {
                 .sum();
     }
 
+    // Agrega un item al carrito. Si el item ya existe, suma la cantidad
     public void agregarItem(ItemCarrito item) {
         if (item == null) {
             throw new IllegalArgumentException("El item no puede ser nulo");

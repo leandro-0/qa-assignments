@@ -11,7 +11,7 @@ public class ItemCarritoTest {
 
     @BeforeEach
     public void setUp() {
-        producto = new Producto("Laptop", 1500.00);
+        producto = new Producto(1, "Laptop", 1500.00);
     }
 
     @Test
@@ -59,13 +59,26 @@ public class ItemCarritoTest {
     @DisplayName("Test comparar igualdad de items de carrito")
     public void testIgualdadItemCarrito() {
         ItemCarrito item1 = new ItemCarrito(producto, 2);
-        ItemCarrito item2 = new ItemCarrito(producto, 2);
-        ItemCarrito item3 = new ItemCarrito(new Producto("Celular", 1000.00), 1);
-        ItemCarrito item4 = new ItemCarrito(producto, 3);
+        ItemCarrito item2 = new ItemCarrito(producto, 4);
+        ItemCarrito item3 = new ItemCarrito(new Producto(6, "Celular", 1000.00), 1);
 
         assertEquals(item1, item2, "Los items deben ser iguales");
-        assertEquals(item1.getSubtotal(), item2.getSubtotal(), "Los subtotales deben ser iguales");
         assertNotEquals(item1, item3, "Los items deben ser diferentes");
-        assertEquals(item1, item4, "Los items deben ser iguales porque son el mismo producto");
+    }
+
+    @Test
+    @DisplayName("Test cambiar cantidad de item de carrito con cantidad no positiva")
+    public void testCambiarCantidadItemCarritoConErrores() {
+        ItemCarrito item = new ItemCarrito(producto, 2);
+        assertThrows(
+                IllegalArgumentException.class,
+                () -> item.setCantidad(0),
+                "La cantidad debe ser mayor que cero"
+        );
+        assertThrows(
+                IllegalArgumentException.class,
+                () -> item.setCantidad(-1),
+                "La cantidad debe ser mayor que cero"
+        );
     }
 }

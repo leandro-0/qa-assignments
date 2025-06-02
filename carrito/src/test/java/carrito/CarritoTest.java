@@ -13,8 +13,15 @@ public class CarritoTest {
     @BeforeEach
     public void setUp() {
         carrito = new Carrito();
-        producto1 = new Producto("Laptop", 1500.00);
-        producto2 = new Producto("Celular", 1000.00);
+        producto1 = new Producto(1, "Laptop", 1500.00);
+        producto2 = new Producto(2, "Celular", 1000.00);
+    }
+
+    @Test
+    @DisplayName("Test carrito vacío y su total")
+    public void testCarritoVacio() {
+        assertEquals(0.00, carrito.getTotal(), 0.01, "El total del carrito vacío debe ser 0");
+        assertEquals(0, carrito.getItems().size(), "El carrito debe estar vacío");
     }
 
     @Test
@@ -30,7 +37,7 @@ public class CarritoTest {
     }
 
     @Test
-    @DisplayName("Agregar producto existente")
+    @DisplayName("Test agregar producto existente")
     public void testAgregarProductoExistente() {
         carrito.agregarItem(new ItemCarrito(producto1, 2));
         carrito.agregarItem(new ItemCarrito(producto1, 3));
@@ -68,7 +75,7 @@ public class CarritoTest {
     }
 
     @Test
-    @DisplayName("Total de la compra")
+    @DisplayName("Test total de la compra")
     public void testTotalCompra() {
         carrito.agregarItem(new ItemCarrito(producto1, 2));
         carrito.agregarItem(new ItemCarrito(producto2, 1));

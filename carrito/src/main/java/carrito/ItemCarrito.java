@@ -1,13 +1,10 @@
 package carrito;
 
 import lombok.Getter;
-import lombok.Setter;
 
 @Getter
 public class ItemCarrito {
     private Producto producto;
-
-    @Setter
     private int cantidad;
 
     public ItemCarrito(Producto producto, int cantidad) {
@@ -19,6 +16,13 @@ public class ItemCarrito {
         }
 
         this.producto = producto;
+        this.cantidad = cantidad;
+    }
+
+    public void setCantidad(int cantidad) {
+        if (cantidad <= 0) {
+            throw new IllegalArgumentException("La cantidad debe ser mayor que cero");
+        }
         this.cantidad = cantidad;
     }
 

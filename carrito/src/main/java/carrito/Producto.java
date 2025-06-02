@@ -4,10 +4,14 @@ import lombok.Getter;
 
 @Getter
 public class Producto {
+    private int id;
     private String nombre;
     private double precio;
 
-    public Producto(String nombre, double precio) {
+    public Producto(int id, String nombre, double precio) {
+        if (id < 0) {
+            throw new IllegalArgumentException("El ID del producto no puede ser negativo");
+        }
         if (nombre == null) {
             throw new IllegalArgumentException("El nombre del producto no puede ser nulo");
         }
@@ -15,6 +19,7 @@ public class Producto {
             throw new IllegalArgumentException("El precio del producto no puede ser negativo");
         }
 
+        this.id = id;
         this.nombre = nombre;
         this.precio = precio;
     }
@@ -24,6 +29,6 @@ public class Producto {
         if (this == o) return true;
         if (!(o instanceof Producto)) return false;
         Producto other = (Producto) o;
-        return Double.compare(other.precio, precio) == 0 && nombre.equals(other.nombre);
+        return other.id == id;
     }
 }
