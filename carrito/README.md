@@ -13,5 +13,5 @@
 ## Pruebas unitarias y resultado de cada una
 Todos los tests pasaron.
 
-[Tests passed](images/tests_passed.png)
+[Tests passed](images/tests-passed.png)
 
